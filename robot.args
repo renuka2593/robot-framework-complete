@@ -1,0 +1,3 @@
+--outputdir reports/
+--loglevel INFO
+--reporttitle "Test Suite Report"

@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../resources/api_tests.robot
+Resource    ../resources/api_resource.robot
 
 *** Test Cases ***
 Get User Information

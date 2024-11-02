@@ -8,5 +8,5 @@ Get User Information
     Status Should Be    ${response}    200
     ${json_data}=    Parse JSON    ${response}
     Dictionary Should Contain Key    ${json_data}    data
-    ${email}=    Get JSON Key    ${json_data["data"]}    email
+    ${email}=    Get JSON Key    ${json_data}    email
     Should Be Equal    ${email}    janet.weaver@reqres.in

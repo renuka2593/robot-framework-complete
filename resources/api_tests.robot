@@ -23,5 +23,5 @@ Status Should Be
 
 Get JSON Key
     [Arguments]    ${json_data}    ${key}
-    ${value}=   Get From Dictionary   ${json_data}    ${key}
+    ${value}=   Get From Dictionary   ${json_data["data"]}    ${key}
     RETURN    ${value}

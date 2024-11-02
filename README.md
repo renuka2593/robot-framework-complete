@@ -1,4 +1,4 @@
-## RobotFramework
+## RobotFramework [![Run Robot Framework Tests](https://github.com/renuka2593/robot-framework-complete/actions/workflows/robot_tests.yml/badge.svg)](https://github.com/renuka2593/robot-framework-complete/actions/workflows/robot_tests.yml)
 
 This project is a comprehensive automation suite built using Robot Framework, designed to facilitate end-to-end testing
 across multiple domains: UI, API, and Database. The suite provides a unified structure to automate user interactions,

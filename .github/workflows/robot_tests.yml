@@ -1,4 +1,4 @@
-name: Run Robot Framework Tests
+name: Run RobotFramework Tests
 
 on:
   push:
@@ -32,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: robot-test-results
-          path: results/
+          path: reports/

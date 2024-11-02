@@ -1,0 +1,35 @@
+name: Run Robot Framework Tests
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to run tests on
+  pull_request:
+
+jobs:
+  run-robot-tests:
+    runs-on: ubuntu-latest  # You can also use other operating systems like windows-latest or macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Check out the repository
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'  # Specify your desired Python version
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Robot Framework Tests
+        run: |
+          robot -A robot.args  tests/
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: robot-test-results
+          path: results/

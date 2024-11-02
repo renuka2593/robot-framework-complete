@@ -29,7 +29,7 @@ jobs:
           robot -A robot.args  tests/
 
       - name: Upload test results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: robot-test-results
           path: results/

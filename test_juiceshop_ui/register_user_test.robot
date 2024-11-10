@@ -1,6 +1,6 @@
 *** Settings ***
 Library    Browser
-Library    FakerLibrary
+Library    FakerLibrary    locale=de_DE    seed=124
 
 *** Variables ***
 ${DISMISS_BANNER}       .close-dialog
@@ -24,6 +24,7 @@ Register with New User - Happy Path
     Click And Wait For Page load    ${new_customer_link}
     ${EMAIL_INPUT}=     Get Element    id=${EMAIL}
     ${EMAIL_ID}=    FakerLibrary.Email
+    should not be empty     ${EMAIL_ID}
     LOG        ${EMAIL_ID}
     fill text    ${EMAIL_INPUT}     ${EMAIL_ID}
     ${PASSWORD_INPUT}=     Get Element    id=${PASSWORD}

@@ -22,7 +22,6 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install Browser
           python -m Browser.entry init
           pip install -r requirements.txt
 

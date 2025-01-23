@@ -32,14 +32,31 @@ def uninstall_application(application_name):
     Uninstall the application using its uninstall string.
     """
     uninstall_string = is_product_installed(application_name)
+    
+    # Debugging: Check the type of uninstall_string
+    print(f"Uninstall string: {uninstall_string}")
+    
     if uninstall_string:
+        # Ensure uninstall_string is a string
+        if not isinstance(uninstall_string, str):
+            print(f"Error: Expected uninstall string to be a string, but got {type(uninstall_string)}.")
+            return
+        
         try:
-            # Try to add silent/unattended flags if available
-            if "/S" not in uninstall_string and "/quiet" not in uninstall_string and "/silent" not in uninstall_string:
+            # Handle MSI uninstallers
+            if uninstall_string.lower().endswith('.msi'):
+                # msiexec method for MSI uninstallers
+                uninstall_string = f"msiexec /x {uninstall_string} /quiet /norestart"
+            
+            # Try adding silent/unattended flags for .exe installers
+            elif "/S" not in uninstall_string and "/quiet" not in uninstall_string and "/silent" not in uninstall_string:
                 if uninstall_string.lower().endswith(".exe"):
                     uninstall_string = f'"{uninstall_string}" /S'
+
+            # Debugging: Check the final uninstall string
+            print(f"Final uninstall string: {uninstall_string}")
             
-            print(f"Product '{application_name}' is installed. Proceeding with uninstallation...")
+            # Run the uninstallation process
             subprocess.run(uninstall_string, check=True, capture_output=True, text=True)
             print(f"Successfully uninstalled '{application_name}'.")
         except subprocess.CalledProcessError as e:

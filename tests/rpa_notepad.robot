@@ -1,8 +1,10 @@
 *** Settings ***
 Library           RPA.Windows
-Library    ../venv/lib/python3.13/site-packages/robot/libraries/OperatingSystem.py
 
-*** Test Cases *** 
-Run Notepad
-    Windows Run    notepad.exe  
-    Click          name:'Untitled - Notepad'
+*** Tasks *** 
+Set Text Into Notepad Window
+    Windows Run    Notepad
+    Control Window      subname:Notepad
+    ${element} =    Get Element    regex:"Text (E|e)ditor"
+    Set Value    ${element}    note to myself
+    Click    name:File

@@ -1,7 +1,7 @@
 *** Settings ***
 Library           RPA.Windows
 
-*** Tasks *** 
+*** Test Cases *** 
 Set Text Into Notepad Window
     Windows Run    Notepad
     Control Window      subname:Notepad

@@ -20,6 +20,7 @@ steps:
   displayName: 'Run Robot Framework Tests'
 
 - task: PublishTestResults@2
+  continueOnError: true
   inputs:
     testResultsFormat: 'JUnit'
     testResultsFiles: 'Junit.xml'

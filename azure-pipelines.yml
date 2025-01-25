@@ -12,7 +12,6 @@ steps:
 
 - script: |
     python -m pip install --upgrade pip
-    pip install robotframework-junitxml
     pip install -r requirements.txt
   displayName: 'Install Robot Framework and Dependencies'
 
@@ -27,9 +26,3 @@ steps:
     failTaskOnFailedTests: true
   displayName: 'Publish Robot Framework Test Results'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathToPublish: 'output'
-    artifactName: 'RobotFrameworkResults'
-    publishLocation: 'Container'
-  displayName: 'Publish Test Artifacts'

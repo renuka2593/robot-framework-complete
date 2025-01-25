@@ -13,11 +13,11 @@ steps:
 - script: |
     python -m pip install --upgrade pip
     pip install robotframework
-    pip install -r requirements.txt # Add this if you have specific dependencies
+    pip install -r requirements.txt
   displayName: 'Install Robot Framework and Dependencies'
 
 - script: |
-    robot --outputdir output tests/ # Adjust the path to your Robot Framework test folder
+    robot --outputdir output tests/notepad.robot
   displayName: 'Run Robot Framework Tests'
 
 - task: PublishTestResults@2

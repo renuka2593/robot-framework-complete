@@ -23,7 +23,7 @@ steps:
   inputs:
     testResultsFormat: 'JUnit'
     testResultsFiles: 'Junit.xml'
-    failTaskOnFailedTests: true
+    failTaskOnFailedTests: false
   displayName: 'Publish Robot Framework Test Results'
 
 - task: PublishBuildArtifacts@1

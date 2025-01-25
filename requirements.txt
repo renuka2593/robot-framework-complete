@@ -1,2 +1,3 @@
 robotframework
 robotframework-flaui
+rpaframework-windows==7.0.2

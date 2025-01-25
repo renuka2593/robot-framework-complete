@@ -26,3 +26,8 @@ steps:
     failTaskOnFailedTests: true
   displayName: 'Publish Robot Framework Test Results'
 
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'report.html'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'

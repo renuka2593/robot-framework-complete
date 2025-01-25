@@ -23,13 +23,13 @@ steps:
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
-    testResultsFiles: 'output/output.xml'
+    testResultsFiles: 'output/Junit.xml'
     failTaskOnFailedTests: true
   displayName: 'Publish Robot Framework Test Results'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathToPublish: 'output' # Adjust to match your output directory
+    pathToPublish: 'output'
     artifactName: 'RobotFrameworkResults'
     publishLocation: 'Container'
   displayName: 'Publish Test Artifacts'

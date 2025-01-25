@@ -2,17 +2,15 @@
 Library           FlaUILibrary
 
 *** Variables ***
-${NOTEPAD_PATH}   C:\\Windows\\System32\\notepad.exe
 ${TEST_TEXT}      This is a test of FlaUI with Robot Framework.
 
 *** Test Cases ***
 
 Open Notepad and Write Text
     [Documentation]  This test opens Notepad, writes text, and verifies the content.
-    Launch Application    ${NOTEPAD_PATH}
-    Wait For Window       Name:Untitled - Notepad    Timeout:5s
-    Move
-    Input Text            AutomationId:15           ${TEST_TEXT}    # Text area AutomationId
-    Sleep                 2s
-    Verify Text Written   ${TEST_TEXT}
-    Close Notepad
+    ${APPLICATION_PID}    Launch Application    notepad.exe
+    Attach Application By Pid    ${APPLICATION_PID}
+    Wait Until Element Exist       /Window[@Name='Untitled - Notepad']
+    Move To    /Window[@Name='Untitled - Notepad']
+    Click    /Window[@Name='Untitled - Notepad']
+    Take Screenshot

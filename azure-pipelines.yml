@@ -1,33 +1,35 @@
-# .NET Desktop
-# Build and run tests for .NET Desktop or Windows classic desktop solutions.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
-
 trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
-
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+  vmImage: 'windows-latest' # Update to 'ubuntu-latest' if running on Linux
 
 steps:
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
+- task: UsePythonVersion@0
   inputs:
-    restoreSolution: '$(solution)'
+    versionSpec: '3.x' # Ensure Python 3.x is installed
+    addToPath: true
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+- script: |
+    python -m pip install --upgrade pip
+    pip install robotframework
+    pip install -r requirements.txt # Add this if you have specific dependencies
+  displayName: 'Install Robot Framework and Dependencies'
 
-- task: VSTest@2
+- script: |
+    robot --outputdir output tests/ # Adjust the path to your Robot Framework test folder
+  displayName: 'Run Robot Framework Tests'
+
+- task: PublishTestResults@2
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    testResultsFormat: 'Robot'
+    testResultsFiles: 'output/output.xml'
+    failTaskOnFailedTests: true
+  displayName: 'Publish Robot Framework Test Results'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: 'output' # Adjust to match your output directory
+    artifactName: 'RobotFrameworkResults'
+    publishLocation: 'Container'
+  displayName: 'Publish Test Artifacts'

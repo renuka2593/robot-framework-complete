@@ -17,13 +17,13 @@ steps:
   displayName: 'Install Robot Framework and Dependencies'
 
 - script: |
-    robot --outputdir output tests/notepad.robot --xunit output/junit-results.xml output/output.xml
+    robot -x Junit tests/notepad.robot 
   displayName: 'Run Robot Framework Tests'
 
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
-    testResultsFiles: 'output/junit-results.xml'
+    testResultsFiles: 'output/output.xml'
     failTaskOnFailedTests: true
   displayName: 'Publish Robot Framework Test Results'
 

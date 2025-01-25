@@ -16,7 +16,7 @@ steps:
   displayName: 'Install Robot Framework and Dependencies'
 
 - script: |
-    robot -x Junit tests/notepad.robot 
+    robot -x Junit tests/notepad.robot  tests/rpa_notepad.robot 
   displayName: 'Run Robot Framework Tests'
 
 - task: PublishTestResults@2
